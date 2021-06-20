@@ -199,7 +199,6 @@
         min-height: 500px;
     }
     #listing{padding: 0}
-    .gallery, .info {
-        width: 100vw;
-    }
+    .gallery{min-width: 100vw;}
+    .info {min-width: 100vw;}
 }
