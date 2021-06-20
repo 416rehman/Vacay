@@ -29,6 +29,7 @@ AWS.config.update({
         const params = {
             Bucket: bucket,
             Key: fileName, // File name you want to save as in S3
+            ContentType: image.mimetype,
             Body: imageContent
         }
         // Uploading files to the bucket
