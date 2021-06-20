@@ -17,9 +17,6 @@ Using Express, Handlebars for backend/frontend, Mongo/Mongoose for DB, and Passp
 5. Run `nodemon` in the directory
 6. Visit http://localhost:3000/ to see the web app
 
-```bash
-pip install foobar
-```
 
 ## Directory Structure
 
