@@ -128,8 +128,12 @@
 }
 #postInfo {
     color: #d0d0d0;
+    display: flex;
 }
-#postInfo *{ padding-right: 50px; text-decoration: none}
+#postInfo *{
+    padding-right: 50px;
+    text-decoration: none;
+}
 
 #links{
     margin: 25px 0;
@@ -193,8 +197,6 @@
     div > #content {
         min-height: 500px;
     }
-
-    #postInfo { display: flex; }
     #listing{padding: 0}
     .images {
         flex-wrap: wrap;
