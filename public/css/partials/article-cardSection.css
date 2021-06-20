@@ -1,0 +1,36 @@
+.articleSection {
+    padding: 0 25px 25px 25px;
+}
+.articleCardContainer {
+    position: relative;
+}
+.article-Carousel{
+    padding-top: 10px;
+    display: flex;
+    overflow: hidden;
+}
+
+.articleSection > h1, .articleSection > h3 {
+    font-size: 25px;
+    text-align: center;
+}
+
+.articleSection > h3 {
+    font-size: 20px;
+}
+
+.articleCardContainer > #articles-left, .articleCardContainer > #articles-right {
+    position: absolute;
+    top: 45%;
+    color: #cbcbcb;
+    font-size: 2em;
+    z-index: 6;
+}
+.articleCardContainer > #articles-right {
+    right: 0;
+}
+
+#articles-left:hover, #articles-right:hover {
+    color: #ffffff;
+    font-size: 2em;
+}

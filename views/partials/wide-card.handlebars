@@ -1,0 +1,17 @@
+<a class="wide-card" href="{{path}}{{id}}">
+    <img src="{{#if image}}{{image}}{{else}}/assets/placeholder.png{{/if}}" alt="" id="location-card-bg">
+    <div class="darkOverlay"></div>
+    <div class="wide-card-info">
+        <div class="tags">
+            {{#each tags}}
+                <div class="tag">
+                    <p class="tag-label">{{this.label}}</p>
+                    <p class="tag-text">{{this.content}}</p>
+                </div>
+            {{/each}}
+
+        </div>
+        <h1>{{title}}</h1>
+        <p>{{subtitle}}</p>
+    </div>
+</a>

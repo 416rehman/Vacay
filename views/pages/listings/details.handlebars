@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="/css/pages/listings/details.css">
+<div id="detailscontainer">
+    <div id="background" style="background-image: url('{{this.images.[0]}}')"></div>
+    <div id="listing">
+        <div id="info">
+            <span>{{this.type.name}}</span>
+            <h1>{{this.title}}</h1>
+            <div id="address"><span>{{this.address}} {{this.location.location}}, {{this.location.country}}</span></div>
+            <div id="rating">
+                <span>Rating: {{this.average}}/5</span>
+                <div class="rate">
+                    <input type="radio" value="5" name="rating" id="rating-5"/>
+                    <label for="rating-5" title="5 stars">&#9733;</label>
+                    <input type="radio" value="4" name="rating" id="rating-4"/>
+                    <label for="rating-4" title="4 stars">&#9733;</label>
+                    <input type="radio" value="3" name="rating" id="rating-3"/>
+                    <label for="rating-3" title="3 stars">&#9733;</label>
+                    <input type="radio" value="2" name="rating" id="rating-2"/>
+                    <label for="rating-2" title="2 stars">&#9733;</label>
+                    <input type="radio" value="1" name="rating" id="rating-1"/>
+                    <label for="rating-1" title="1 star">&#9733;</label>
+                </div>
+            </div>
+            <br>
+            <div id="content">
+                <p>{{this.details}}</p>
+            </div>
+            {{#if this.amenities}}
+                <div id="amenities">
+                    {{#each this.amenities}}<span>{{this}}</span>{{/each}}
+                </div>
+            <br>
+            {{/if}}
+            <div id="postInfo"><a href="/@{{this.author.username}}">Posted By @{{this.author.username}}</a><span>{{this.date}}</span></div>
+        </div>
+        <div class="gallery">
+            <span>Gallery</span>
+            <div class="images">
+                {{#each this.images}}
+                    <div class="image" style="background-image: url('{{this}}')" onclick="location.href='{{this}}'"></div>
+                {{/each}}
+            </div>
+        </div>
+        <div id="links">
+            <button type="button" onclick="location='/listings/?location={{this.location._id}}'">More From {{this.location.location}}   ⇢</button>
+            <button type="button" onclick="location='/listings/?type={{this.type._id}}'">More {{this.type.name}}   ⇢</button>
+        </div>
+    </div>
+    <div id="overlay"></div>
+</div>

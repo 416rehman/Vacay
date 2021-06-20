@@ -1,0 +1,28 @@
+/*** I declare that this assignment is my own work in accordance with
+ * Seneca Academic Policy. No part of this assignment has been copied
+ * manually or electronically from any other source (including web sites)
+ * or distributed to other students. *
+ *
+ *      Name: Hayaturehman Ahmadzai
+ *      Student ID: hahmadzai3
+ *      Creation Date: 2021-06-06
+ */
+
+/*locationTypes*/
+.wide-cardSection {
+    display: flex;
+    flex-direction: column;
+    padding: 0 25px;
+}
+.wide-cardSection > h1 {
+    font-size: 25px;
+    text-align: center;
+
+}
+.wide-cardContainer {
+    padding-top: 10px;
+    display: flex;
+    flex-flow: row wrap;
+
+    width: 100%;
+}

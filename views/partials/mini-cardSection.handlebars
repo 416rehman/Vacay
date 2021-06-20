@@ -1,0 +1,17 @@
+{{!--requires /css/partials/propertyTypesSection.css--}}
+{{!--requires sectionTitle <sectionSubtitle>, path, Object[] with id, thumbnail, title, text--}}
+<div class="mini-cardSection">
+    <div class="mini-cardContainer">
+        <h1>{{sectionTitle}}</h1>
+        {{#if sectionSubtitle}}<h3>{{sectionSubtitle}}</h3>{{/if}}
+        <div class="mini-cardCarousel">
+            {{#each Object}}
+                {{> mini-card path=../path id=this._id thumbnail=this.image title=this.name text=this.text}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="carousel-Controls">
+        <a id="left" href="javascript:void(0);"><i class="fas fa-chevron-circle-left"></i></a>
+        <a id="right" href="javascript:void(0);"><i class="fas fa-chevron-circle-right"></i></a>
+    </div>
+</div>

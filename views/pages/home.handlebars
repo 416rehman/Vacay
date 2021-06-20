@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/css/pages/home.css">
+<link rel="stylesheet" href="/css/partials/featuredHeroSlider.css">
+<link rel="stylesheet" href="/css/partials/mini-cardSection.css">
+<link rel="stylesheet" href="/css/partials/mini-card.css">
+<link rel="stylesheet" href="/css/partials/wide-cardSection.css">
+<link rel="stylesheet" href="/css/partials/wide-card.css">
+<link rel="stylesheet" href="/css/partials/article-cardSection.css">
+<link rel="stylesheet" href="/css/partials/article-card.css">
+
+{{#if featuredListings}}
+    {{>featuredHeroSlider showcase=featuredListings}}
+{{/if}}
+<hr>
+{{#if propertyTypes}}
+    {{>mini-cardSection Object=propertyTypes sectionTitle="Browse Properties by Type" path='/listings?type='}}
+{{/if}}
+<hr>
+{{#if locationTypes}}
+    {{>wide-cardSection Object=locationTypes sectionTitle="Browse Popular Locations" path='/listings/?location='}}
+{{/if}}
+<hr>
+{{#if articles}}
+    {{>article-cardSection articles=articles}}
+{{/if}}
+<script src="/js/partials/mini-cardSection.js"></script>
+<script src="/js/partials/article-cardSection.js"></script>

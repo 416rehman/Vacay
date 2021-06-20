@@ -1,0 +1,43 @@
+.listings {
+    height: calc(100% - 75px);
+    width: 100%;
+    display: flex;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar .types {
+    display: flex;
+    flex-direction: column;
+}
+
+.listings-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-left: 200px;
+    padding-top: 25px;
+}
+.listing-cards-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 890px) {
+    .sidebar {
+        display: none;
+    }
+    .listings-container {
+        margin-left: 0;
+    }
+}

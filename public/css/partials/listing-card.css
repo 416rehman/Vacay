@@ -1,0 +1,158 @@
+/*** I declare that this assignment is my own work in accordance with
+ * Seneca Academic Policy. No part of this assignment has been copied
+ * manually or electronically from any other source (including web sites)
+ * or distributed to other students. *
+ *
+ *      Name: Hayaturehman Ahmadzai
+ *      Student ID: hahmadzai3
+ *      Creation Date: 2021-06-15
+ */
+.listing-card {
+    background-image: linear-gradient(to right, #181d23 0%, #1d262f 51%, #4b4b85 100%);
+    border-radius: 10px;
+    width: 70em;
+    display: flex;
+    max-width: 80%;
+    min-height: 210px;
+
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #dddddd;
+}
+
+.listingInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    max-width: 100%;
+    position: relative;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.listing-card > img {
+    width: 250px;
+    object-fit: cover;
+    border-radius: 10px 0 0 10px;
+
+    min-width: 250px;
+    height: 230px;
+    max-height: 100%;
+}
+#title{margin: 0px; font-size: 25px; padding-top: 10px}
+#location {
+    color: #bababa;
+    font-style: italic;
+    font-size: 15px;
+}
+#type {
+    margin: 0px;
+    color: #b1b1b1;
+    font-size: 13px;
+}
+.listingInfo > #details {
+    padding-top: 8px;
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow-wrap: anywhere;
+    height: 250px;
+    margin-bottom: 30px;
+}
+.listingInfo > #price {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 50px;
+    text-align: center;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 600;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+
+    background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #fdfcff;
+}
+#price > p {margin: 0}
+
+.listingInfo > #onSale {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: green;
+    height: 50px;
+    text-align: center;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 600;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    background-image: linear-gradient(to right, #f857a6 0%, #ff5858  51%, #f857a6  100%);
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #ffdede;
+}
+#onSale > p {margin: 0}
+
+.listing-card:hover #price{
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.listing-card:hover #onSale {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.listing-card:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.listingInfo #stars {
+    padding-bottom: 5px;
+}
+.listing-card {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 890px) {
+    .listing-card {
+        flex-direction: column;
+        text-align: center;
+        max-width: 80vw;
+    }
+
+    .listing-card > img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+        max-height: 200px;
+    }
+
+    .listing-card #price {
+        left: 0;
+        border-radius: 0 10px 0 10px;
+    }
+
+    .listing-card #onSale {
+        bottom: 0 !important;
+        top: auto;
+        border-radius: 10px 0px 10px 0px;
+    }
+}

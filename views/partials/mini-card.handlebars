@@ -1,0 +1,11 @@
+{{!--requires /css/partials/mini-card.css--}}
+{{!--Requires path, id, thumbnail, title, text--}}
+
+<a class="mini-card" href="{{path}}{{id}}">
+    <img src="{{#if thumbnail}}{{thumbnail}}{{else}}/assets/placeholder.png{{/if}}" alt="">
+    <div class="darkOverlay"></div>
+    <div class="mini-card-info">
+        <h1>{{title}}</h1>
+        <p>{{text}}</p>
+    </div>
+</a>

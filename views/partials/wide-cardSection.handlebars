@@ -1,0 +1,9 @@
+{{!--Requires sectionTitle, Object[] with id, image, taglabel, tags{label, content, <style>}, title, subtitle--}}
+<div class="wide-cardSection">
+    <h1>{{sectionTitle}}</h1>
+    <div class="wide-cardContainer">
+        {{#each Object}}
+            {{> wide-card path=../path image=this.image id=this._id taglabel=this.taglabel title=this.title subtitle=this.subtitle}}
+        {{/each}}
+    </div>
+</div>

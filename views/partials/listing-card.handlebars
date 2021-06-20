@@ -1,0 +1,14 @@
+<div class="listing-card" onclick="window.location.href='/listings/{{this._id}}';">
+    <img src="{{#if this.thumbnail}}{{this.thumbnail}}{{else if this.images}}{{this.images.[0]}}{{else}}/assets/placeholder.png{{/if}}" alt="">
+    <div class="listingInfo">
+        <h1 id="title">{{this.title}}</h1>
+        <span id="location">{{this.location.location}} {{this.location.country}}</span>
+
+        <p id="details">{{this.details}}</p>
+        <p id="type">{{this.type.name}}</p>
+
+        {{#if this.currentPrice}}<div id="onSale"><p>On Sale</p></div>{{/if}}
+        <div id="stars">{{this.average}}/5 {{#times this.average}}<i class="fas fa-star"></i>{{/times}}</div>
+        <div id="price"><p>${{#if this.currentPrice}}{{this.currentPrice}}{{else}}{{this.price}}{{/if}}</p></div>
+    </div>
+</div>

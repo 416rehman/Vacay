@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+{{!--    FontAwesome--}}
+    <script src="https://kit.fontawesome.com/d45e3e31b1.js" crossorigin="anonymous"></script>
+{{!--    jQuery--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
+
+    <title>Ahmadzai Vacations</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a id="logo" href="/"><img src="/assets/logo/logo-gradient.svg" class="icon"></a>
+            <a id="listings" href="/listings"><i class="fas fa-umbrella-beach"></i> Browse</a>
+            <a id="articles" href="/articles" ><i class="far fa-newspaper"></i> Articles</a>
+            <form action="/search/" method="post">
+                <input class="typeInput" type="submit" name="scope" value="all" style="display: none"/>
+                <input autocomplete="off" class="search-input" name="query" placeholder="Search Vacay" type="text" value="" required="">
+            </form>
+
+            {{#if loggedIn}}
+            <a id="profile" href="/@"><i class="far fa-user-circle"></i> Profile</a>
+            <div class="multiOption">
+                    <button type="button" class="currentOption" value="all"><i class="fas fa-plus"></i></button>
+                    <div class="optionsContainer" style="display: none">
+                        <p>Add New</p>
+                        <hr>
+                        <div class="options">
+                            <button type="button" value="all" style="display: none" onclick="window.location.href='/new'"><i class="fas fa-plus"></i><p>All</p></button>
+                            <button type="button" value="listing" onclick="window.location.href='/new/listing'"><i class="fas fa-ticket-alt"></i><p>Listing</p></button>
+                            <button type="button" value="article" onclick="window.location.href='/new/article'"><i class="far fa-newspaper"></i><p>Article</p></button>
+                            <button type="button" value="location" onclick="window.location.href='/new/location'"><i class="fas fa-map-marked-alt"></i><p>Location</p></button>
+                            <button type="button" value="type" onclick="window.location.href='/new/type'"><i class="far fa-building"></i><p>Type</p></button>
+                        </div>
+                    </div>
+            </div>
+            <a id="logout" href="/logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+            {{else}}
+            <a id="signup" href="/signup"><i class="fas fa-plus"></i> Sign Up</a>
+            <a id="login" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            {{/if}}
+
+            <a href="javascript:void(0);" class="hamburger">
+                <i class="fa fa-bars"></i>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        {{{body}}}
+    </main>
+
+    <footer>
+        <nav>
+            <a href="/"><i class="fas fa-hotel"></i> Home</a>
+            <a href="/listings"><i class="fas fa-umbrella-beach"></i> Browse</a>
+            <a href="/articles"><i class="fas fa-ticket-alt"></i> Articles</a>
+            <p>&copy; 2020 Some copyright message.</p>
+        </nav>
+    </footer>
+<script type="text/javascript" src="/js/main.js"></script>
+</body>
+</html>

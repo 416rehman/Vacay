@@ -1,0 +1,15 @@
+{{!--Requires id, image, title, excerpt, authorID, authorName--}}
+<div class="article-card" onclick="window.location.href='/articles/{{id}}';">
+    <img src="{{#if image}}{{image}}{{else}}/assets/placeholder.png{{/if}}" alt="">
+    <div class="article-card-info">
+        <div id="title"><h1>{{title}}</h1></div>
+        <div id="colored-break"></div>
+        <div id="article-card-data">
+            <p id="content">{{#if excerpt}}{{excerpt}}{{else}}{{content}}{{/if}}</p>
+            <div class="metadata">
+                <a href="/@{{authorUsername}}">@{{authorUsername}}</a>
+                <p>{{date}}</p>
+            </div>
+        </div>
+    </div>
+</div>

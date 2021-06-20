@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/css/pages/articles/articles.css">
+<link rel="stylesheet" href="/css/partials/article-card.css">
+<link rel="stylesheet" href="/css/partials/pagination.css">
+<div class="articlesContainer">
+    <div class="articlesList">
+        {{> pagination page=this.page pages=this.pages path="/articles/?page="}}
+        {{#each results}}
+            {{> article-card id=this._id image=this.image title=this.title excerpt=this.excerpt content=this.content authorID=this.author._id authorUsername=this.author.username date=this.date}}
+        {{/each}}
+    </div>
+</div>

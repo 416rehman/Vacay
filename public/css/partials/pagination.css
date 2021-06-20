@@ -1,0 +1,46 @@
+/*** I declare that this assignment is my own work in accordance with
+ * Seneca Academic Policy. No part of this assignment has been copied
+ * manually or electronically from any other source (including web sites)
+ * or distributed to other students. *
+ *
+ *      Name: Hayaturehman Ahmadzai
+ *      Student ID: hahmadzai3
+ *      Creation Date: 2021-06-15
+ */
+.pagination {
+    display: flex;
+    align-items: baseline;
+    margin: 15px 0;
+}
+.pagination > p {    min-width: 100px;}
+.pagination > .paginationRow {
+    background: rgba(150, 150, 150, 0.2);
+    backdrop-filter: blur( 4px );
+    border: none;
+    border-radius: 5px;
+    padding: 0 5px;
+
+    display: flex;
+    align-items: baseline;
+    margin-left: 15px;
+    max-width: 100%;
+}
+
+.paginationRow > a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    padding: 0 5px;
+
+}
+.paginationRow > .current {
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.paginationRow > a:hover {
+    background: rgba(150, 150, 150, 0.2);
+    backdrop-filter: blur( 4px );
+    border: none;
+    border-radius: 5px;
+}

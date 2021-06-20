@@ -1,0 +1,123 @@
+
+.article-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-height: 200px;
+    background-color: #0c0f10;
+
+    border-radius: 6px;
+    box-shadow: 10px 10px 5px -1px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 10px 10px 5px -1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 10px 10px 5px -1px rgba(0,0,0,0.1);
+    color: #aeaeae;
+    /*margin-right: 15px;*/
+    /*min-width: 500px;*/
+    /*max-width: 500px;*/
+
+    max-width: 100%;
+    width: 500px;
+}
+.article-card > img {
+    border-radius: 5px;
+    min-width: 150px;
+    max-width: 150px;
+    overflow: hidden;
+    object-fit: cover;
+    margin: 5px;
+}
+
+.article-card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 5px;
+    font-weight: 600;
+}
+.article-card-info #title > h1 {
+    font-size: 1.1em;
+}
+
+.metadata * {
+    font-size: 0.8em;
+    margin-bottom: 0px;
+}
+
+.metadata {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+}
+/*author*/
+.metadata a {
+    text-decoration: none;
+    color: #647cb0;
+}
+
+.metadata a:hover {
+    color: #93b7ff;
+}
+
+.article-card-info > #title * {
+    padding: 5px 0px 5px 5px;
+    margin-bottom: 0;
+}
+.article-card-info > #title {
+    background-color: #0c0f10;
+    border-bottom-right-radius: 15px;
+    z-index: 1;
+}
+#article-card-data > #content {
+    font-size: 0.8em;
+    font-weight: 400;
+    margin-bottom: 0;
+    /*DO NOT RESIZE*/
+    flex-basis: 0;
+    /*take up entire space*/
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 12px 0px 5px 5px;
+
+}
+.article-card:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.article-card-info #article-card-data {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-top-left-radius: 15px;
+    background-color: #0c0f10;
+}
+#colored-break {
+    transition: 0.5s;
+    height: 32px;
+    margin-bottom: -15px;
+    margin-top: -15px;
+    background-image: linear-gradient( to right, #942b7c 5%, #3813C2 100%);
+    background-size: 200% auto;
+}
+
+.article-card:hover #colored-break {
+    background-position: right center;
+}
+
+@media screen and (max-width: 890px) {
+    .article-card > img {
+        min-width: 100%;
+        overflow: hidden;
+        max-height: 150px;
+        margin: 0;
+
+        border-radius: 5px 5px 0 0;
+    }
+    .article-card{
+        width: 100%;
+    }
+    #article-card-data {
+        min-height: 150px;
+    }
+}

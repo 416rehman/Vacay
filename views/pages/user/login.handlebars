@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/css/pages/user/login.css">
+<div id="login-wrapper" class="d-flex justify-content-center align-items-center">
+    <div id="login-form-container">
+        <div id="login-title"><h1>Login</h1></div>
+        <div id="login-form">
+            <form>
+                <div>
+                    <label for="email">Email</label><br>
+                    <input id="email" placeholder="Email" type="text" name="email" value="{{preserved.email}}">
+                </div>
+                <br>
+                <div>
+                    <label for="password">Password</label><br>
+                    <input id="password" placeholder="Password" type="password" name="password" value="{{preserved.password}}">
+                </div><br>
+                <button id="signin-btn" type="submit" formmethod="post">Sign In</button>
+                <br>
+                {{#if error}}<span id="error">{{error}}</span>{{/if}}
+                {{#if status}}<span id="status">{{status}}</span>{{/if}}
+                <br>
+                <div class="links">
+                    <a href="">Forgot Password?</a>
+                    <a href="/signup">Don't have an account? Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

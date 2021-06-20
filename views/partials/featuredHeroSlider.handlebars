@@ -1,0 +1,39 @@
+{{!--requires /css/partials/featuredHeroSlider.css--}}
+<div class="hero-slider">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {{#each showcase}}
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{@index}}"{{#if @first}} class="active" {{/if}}aria-label="Slide {{@index}}"></button>
+            {{/each}}
+        </div>
+        <div class="carousel-inner">
+            {{#each showcase}}
+                <div class="carousel-item{{#if @first}} active{{/if}}">
+                    <img src="{{#if images}}{{images.[0]}}{{else}}/assets/placeholder.png{{/if}}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption">
+                        <div class="titleContainer">
+                            <p class="type">{{type.name}}</p>
+                            <h5 class="title">{{title}}</h5>
+                        </div>
+                        <hr>
+                        <div class="infoContainer">
+                            <div class="info">
+                                <p class="location">{{location.location}}, {{location.country}}</p>
+                                <div class="rate">{{average}}/5 {{#times average}}<i class="fas fa-star"></i>{{/times}}</div>
+                            </div>
+                            <button class="priceButton" onclick="location.href='/listings/{{_id}}'" type="button">{{price}}{{../currency}}</button>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>

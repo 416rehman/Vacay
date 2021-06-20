@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="/css/pages/user/signup.css">
+<div id="userProfile" class="d-flex justify-content-center align-items-center">
+    <div id="userProfileContainer">
+        <div id="signup-title"><h1>Sign Up</h1></div>
+        <div id="signup-form">
+            <form action="/signup" method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="username">Username</label><br>
+                    <input id="username" placeholder="Username" type="text" name="username" value="{{preserved.username}}">
+                </div>
+                <br>
+                <div>
+                    <label for="name">Name</label><br>
+                    <input id="name" placeholder="Name" type="text" name="name" value="{{preserved.name}}">
+                </div>
+                <br>
+                <div>
+                    <label for="email">Email</label><br>
+                    <input id="email" placeholder="Email" name="email" value="{{preserved.email}}">
+                </div>
+                <br>
+                <div>
+                    <label for="password">Password</label><br>
+                    <input id="password" placeholder="Password" type="password" name="password" value="{{preserved.password}}">
+                </div><br>
+                <button id="signup-btn" type="submit">Sign Up</button>
+                <br>
+                <p id="error">{{error}}</p>
+                <p id="status">{{status}}</p>
+                <div class="links"><a href="/login">Already have an account? Log In</a></div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/css/pages/new/type.css">
+<div class="container">
+    <div class="formWrapper">
+        <div class="formInfo background">
+            <i class="fas fa-plus-square"></i>
+            <h3>New Property Type</h3>
+        </div>
+        <hr>
+        <form action="/new/type" method="post" enctype="multipart/form-data">
+            <div class="harmonyInput">
+                <label for="name">Name</label><br>
+                <input id="name" placeholder="Name" type="text" name="name" value="{{preserved.name}}" required="">
+            </div>
+            <div class="harmonyInput">
+                <label for="name">Image</label><br>
+                <input id="file" placeholder="Image" type="file" name="image" accept="image/x-png,image/gif,image/jpeg">
+                <hr>
+                <input id="url" placeholder="Image URL" type="text" name="imageURL" value="{{preserved.imageURL}}">
+            </div>
+            <input type="submit">
+            <p id="error">{{error}}</p>
+            <p id="status">{{status}}</p>
+        </form>
+    </div>
+</div>

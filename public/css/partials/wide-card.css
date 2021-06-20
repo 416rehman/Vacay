@@ -1,0 +1,104 @@
+/*Masonry from https://w3bits.com/flexbox-masonry/*/
+
+.wide-card {
+    flex: auto;
+    height: 250px;
+    min-width: 400px;
+    margin: 0 8px 8px 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.wide-card > img {
+    position: absolute;
+    height: auto;
+    top: 0;
+    left: 0;
+    min-height: 250px !important;
+    width: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.wide-card .darkOverlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 99%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.wide-card:nth-child(4n+1) {
+    width: 250px;
+}
+.wide-card:nth-child(4n+1):nth-child(4n+2) {
+    width: 325px;
+}
+.wide-card:nth-child(4n+1):nth-child(4n+3) {
+    width: 180px;
+}
+.wide-card:nth-child(4n+1):nth-child(4n+4) {
+    width: 380px;
+}
+
+.wide-card-info {
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-left: 3%;
+
+    text-decoration: none;
+    color: #c8c8c8;
+}
+.tags {
+    align-self: flex-end;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+}
+.tag {
+    transition: 0.5s;
+    background-size: 200% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 120px;
+    padding-right: 15px;
+    padding-top: 3px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+
+    background-image: linear-gradient(to right, #6a3093 0%, #a044ff  51%, #6a3093  100%)
+}
+
+.tag:not(:first-child) {
+    border-top-left-radius: 0px;
+    background-image: linear-gradient(to right, #642B73 0%, #C6426E  51%, #642B73  100%)
+}
+.tag > *{ margin-bottom: 0px;}
+.tag > .tag-label {font-size: 12px;}
+
+.wide-card:hover .tag, .wide-card:hover .wide-card-info {
+    background-position: right center; /* change the direction of the change here */
+    color: #ffffff;
+    text-decoration: none;
+}
+.wide-card:hover .darkOverlay {
+    opacity: 90%;
+}
+
+@media screen and (max-width: 890px) {
+    .tag{
+        align-items: flex-start;
+        padding-left: 15px;
+    }
+}

@@ -1,0 +1,142 @@
+/*** I declare that this assignment is my own work in accordance with
+ * Seneca Academic Policy. No part of this assignment has been copied
+ * manually or electronically from any other source (including web sites)
+ * or distributed to other students. *
+ *
+ *      Name: Hayaturehman Ahmadzai
+ *      Student ID: hahmadzai3
+ *      Creation Date: 2021-06-11
+ */
+ .container {
+     padding-top: 75px;
+     display: grid;
+     place-items: center;
+     align-items: center;
+     justify-content: center;
+     min-height: 100%;
+     position: absolute;
+     min-width: 100%;
+     padding-bottom: 140px; /*75*2.. 75px to go higher than the footer, 75px more for space*/
+ }
+
+.formWrapper {
+
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    max-width: 90vw;
+}
+
+.formInfo {
+    padding: 15px 15px 0 15px;
+    text-align: center;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px 10px 0 0;
+    font-weight: 700;
+}
+
+.formInfo > i {
+    font-size: 4em;
+}
+.formWrapper > form {padding-top: 25px}
+.harmonyInput {
+    padding-bottom: 5px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: -3px 6px 33px -13px rgba(46,46,46,0.22);
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 5px;
+}
+
+.harmonyInput *{
+    border: none;
+    padding-left: 15px;
+}
+
+.harmonyInput > input {
+    height: 50px;
+    width: 100%;
+}
+
+.harmonyInput > input[type="file"] {
+    color: #8c8c8c !important;
+    font-weight: 600;
+}
+.harmonyInput > label {
+    padding-top: 10px;
+    color: black;
+    font-weight: 600;
+}
+
+.formWrapper > form > input[type="submit"] {
+    /*background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);*/
+    padding: 15px 0px;
+    margin-left: 7%;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border: none;
+    width: 85%;
+    font-weight: 600;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: 25px;
+
+    background: linear-gradient(
+            90deg,
+            #b144ff,
+            #316796,
+            #67dcca,
+            #4779d0,
+            #ff6e20,
+            #8adc67
+    );
+    background-size: 400% 400%;
+}
+
+.formWrapper > form > input[type="submit"]:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+@keyframes gradientAnim {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+div > hr {
+    color: black;
+    margin: 0;
+}
+
+#file {margin-top: 5px;}
+
+form > p {
+    color: #fd6262;
+    text-align: center;
+    overflow-wrap: anywhere;
+    font-weight: 600;
+}
+form > #error {color: #fd6262;}
+form > #status {color: #35ab44;}
+
+.background {
+    background: linear-gradient(
+            90deg,
+            #b144ff,
+            #316796,
+            #67dcca,
+            #4779d0,
+            #2058ff,
+            #8adc67
+    );
+    background-size: 400% 400%;
+    animation: gradientAnim 45s ease infinite;
+}

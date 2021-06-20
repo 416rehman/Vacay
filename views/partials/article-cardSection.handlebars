@@ -1,0 +1,13 @@
+<div class="articleSection">
+    <h1>Articles</h1>
+    <h3>Curated Articles Just For You!</h3>
+    <div class="articleCardContainer">
+        <div class="article-Carousel">
+            {{#each articles}}
+                {{> article-card id=this._id image=this.image title=this.title excerpt=this.excerpt authorUsername=this.authorUsername date=this.date}}
+            {{/each}}
+        </div>
+        <a id="articles-left" href="javascript:void(0);"><i class="fas fa-chevron-circle-left"></i></a>
+        <a id="articles-right" href="javascript:void(0);"><i class="fas fa-chevron-circle-right"></i></a>
+    </div>
+</div>

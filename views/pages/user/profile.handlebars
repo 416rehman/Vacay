@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/css/pages/user/profile.css">
+<link rel="stylesheet" href="/css/partials/pagination.css">
+<link rel="stylesheet" href="/css/partials/listing-card.css">
+<link rel="stylesheet" href="/css/partials/article-card.css">
+<div id="userProfile" class="d-flex justify-content-center align-items-center">
+    <div id="userProfileContainer">
+        <div id="userCard">
+            <div class="avatar" style="background-image: url('https://i.imgur.com/vks6KO0.jpg')"></div>
+            <div id="userInfo">
+                <h1 id="name">{{user.name}}</h1>
+                <span id="username">@{{user.username}}</span>
+                <hr>
+                <p id="bio">{{user.bio}}</p>
+            </div>
+        </div>
+        <hr>
+        <div id="userPosts">
+            <span id="filter">
+                <button type="button" {{#if listings}}class='currentPage'{{/if}} onclick="location.href='/@{{user.username}}?posts=listings'">Listings</button>
+                <button type="button" {{#if articles}}class='currentPage'{{/if}} onclick="location.href='/@{{user.username}}?posts=articles'">Articles</button>
+            </span>
+            {{#if listings}}
+                {{#if listings.pages}}{{>pagination page=listings.page pages=listings.pages path=(concat "/@" user.username "?posts=listings&page=")}}{{/if}}
+                {{#each listings.results}}
+                    {{> listing-card this}}
+                {{/each}}
+            {{else if articles}}
+                {{#if articles.pages}}{{>pagination page=articles.page pages=articles.pages path=(concat "/@" user.username "?posts=articles&page=")}}{{/if}}
+                {{#each articles.results}}
+                    {{> article-card image=this.image title=this.title excerpt=this.excerpt content=this.content id=this._id authorID=this.author._id authorName=this.author.name date=this.date}}
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</div>

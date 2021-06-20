@@ -1,0 +1,8 @@
+<div class="pagination">
+    <p>Page {{page}} of {{pages}}</p>
+    <div class="paginationRow">
+        {{#times pages}}
+            <a {{#if (eq ../page (add @index 1))}}class="current"{{/if}} href="{{../path}}{{add @index 1}}">{{add @index 1}}</a>
+        {{/times}}
+    </div>
+</div>

@@ -1,0 +1,196 @@
+/*** I declare that this assignment is my own work in accordance with
+ * Seneca Academic Policy. No part of this assignment has been copied
+ * manually or electronically from any other source (including web sites)
+ * or distributed to other students. *
+ *
+ *      Name: Hayaturehman Ahmadzai
+ *      Student ID: hahmadzai3
+ *      Creation Date: 2021-06-13
+ */
+ #detailscontainer {
+     margin: 0;
+     position: absolute;
+     top: 0;
+     left: 0;
+     min-width: 100%;
+     min-height: 100%;
+
+     padding: 140px 0px;
+     font-weight: 600;
+ }
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+#overlay{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 15%, rgba(0,0,0,1) 99%);
+    opacity:0.8;
+    z-index: -1;
+}
+
+#listing {
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    top: 0;
+}
+#info {
+    padding: 10px;
+    margin-top: 15px;
+    background: rgba(40, 40, 40, 0.6);
+    backdrop-filter: blur( 4px );
+    border-radius: 10px;
+
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    min-height: 100%;
+    flex: 1;
+    width: 80vw;
+
+}
+#info > #address * {
+    padding-right: 15px;
+}
+
+#rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#rating > * {
+    padding-right: 5px;
+}
+.rate {
+    padding-left: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur( 4px );
+    border-radius: 10px;
+
+    font-size: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.rate input {
+    display: none;
+}
+.rate label {
+    transition: all 0.2s;
+    display: inline-block;
+    margin: 0;
+    float: right;
+}
+
+/*CREDITS https://codepen.io/hesguru/pen/BaybqXv*/
+.rate > input:checked ~ label, /* show gold star when clicked */
+.rate:not(:checked) > label:hover, /* hover current star */
+.rate:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rate > input:checked + label:hover, /* hover current star when changing rating */
+.rate > input:checked ~ label:hover,
+.rate > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rate > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+#info > #content {
+    color: #d0d0d0;
+    max-height: 250px;
+    overflow-y: auto;
+    font-weight: 400;
+    white-space: break-spaces;
+}
+#info > h1 {
+    color: white;
+    font-weight: 700;
+    max-font-size: 80vw;
+}
+#amenities > span {
+    margin-right: 10px;
+    color: #b3b3b3;
+    padding: 0 10px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur( 4px );
+    border-radius: 10px;
+}
+#postInfo {
+    color: #d0d0d0;
+}
+#postInfo *{ padding-right: 50px; text-decoration: none}
+
+#links{
+    margin: 25px 0;
+}
+#links > button {
+    background: rgba(40, 40, 40, 0.6);
+    backdrop-filter: blur( 4px );
+
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    color: #dddddd;
+    font-weight: 600;
+
+}
+#links > button:hover {
+    border: 1px solid #a0a0a0;
+    color: white;
+}
+.gallery {
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px;
+    margin-top: 15px;
+    background: rgba(40, 40, 40, 0.6);
+    backdrop-filter: blur( 4px );
+    border-radius: 10px;
+
+    min-height: 100%;
+    flex: 1;
+    width: 80vw;
+}
+.gallery > span {
+    padding-bottom: 5px;
+    color: #cbcbcb;
+}
+.images{
+    display: flex;
+}
+.images > .image {
+    height: 150px;
+    max-height: 100%;
+    width: 150px;
+    border-radius: 5px;
+    margin-right: 15px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    filter: brightness(80%);
+}
+
+.images > .image:hover {
+    filter: brightness(100%);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 890px) {
+    div > #content {
+        min-height: 500px;
+    }
+}

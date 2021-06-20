@@ -1,0 +1,59 @@
+/*** I declare that this assignment is my own work in accordance with
+ * Seneca Academic Policy. No part of this assignment has been copied
+ * manually or electronically from any other source (including web sites)
+ * or distributed to other students. *
+ *
+ *      Name: Hayaturehman Ahmadzai
+ *      Student ID: hahmadzai3
+ *      Creation Date: 2021-06-06
+ */
+.mini-card {
+    position: relative;
+    max-width: 250px;
+    min-width: 250px;
+    min-height: 300px;
+    max-height: 300px;
+    overflow: hidden;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.mini-card .darkOverlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 99%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+/*center*/
+.mini-card > img {
+    width: 170%;
+    height: auto;
+    min-height: 100%;
+}
+.mini-card-info {
+    color: #c8c7c7;
+    position: absolute;
+    bottom: 5px;
+    margin-left: 15px;
+}
+
+.mini-card-info h1 {
+    font-size: 20px;
+}
+.mini-card-info p {
+    font-size: 15px;
+
+}
+
+.mini-card:hover img{
+    transform: scale(1.1);
+}
+.mini-card:hover * {
+    color: white;
+}
+
+.mini-card:hover .darkOverlay {
+    opacity: 85%;
+}

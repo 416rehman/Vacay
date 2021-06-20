@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="/css/pages/new/listing.css">
+<div class="container">
+    <div class="formWrapper">
+        <div class="formInfo background">
+            <i class="fas fa-plus-square"></i>
+            <h3>New Listing</h3>
+        </div>
+        <hr>
+        <form action="/new/listing" method="post" enctype="multipart/form-data">
+            <div class="horizontal-row">
+                <div class="harmonyInput" >
+                    <label for="type">Property Type*</label><br>
+                    <select name="type" class="harmonyInput">
+                        {{#each types}}
+                            <option value="{{this._id}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div id="titleInput" class="harmonyInput">
+                    <label for="title">Title*</label><br>
+                    <input id="title" placeholder="Los Santos Inn" type="text" name="title" value="{{preserved.title}}">
+                </div>
+            </div>
+
+            <div class="horizontal-row">
+                <div id="detailsInput" class="harmonyInput">
+                    <label for="details">Details*</label><br>
+                    <textarea id="details" placeholder="Located in the heart of Los Santos, walking distance from Vinewood Beach..." type="text" name="details" >{{preserved.details}}</textarea>
+                </div>
+            </div>
+
+            <div class="horizontal-row">
+                <div class="harmonyInput" >
+                    <label for="location">Location*</label><br>
+                    <select name="location" >
+                        {{#each locations}}
+                            <option value="{{this._id}}">{{this.location}}, {{this.country}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div id="addressInput" class="harmonyInput">
+                    <label for="address">Address*</label><br>
+                    <input id="address" placeholder="Location (Paris)" type="text" name="address" value="{{preserved.address}}" >
+                </div>
+            </div>
+
+            <div class="horizontal-row">
+                <div class="harmonyInput">
+                    <label for="bedrooms">Bedrooms*</label><br>
+                    <input id="bedrooms" placeholder="3" type="text" name="bedrooms" value="{{preserved.bedrooms}}" >
+                </div>
+                <div class="harmonyInput">
+                    <label for="bathrooms">Bathrooms*</label><br>
+                    <input id="bathrooms" placeholder="1" type="text" name="bathrooms" value="{{preserved.bathrooms}}" >
+                </div>
+                <div class="harmonyInput">
+                    <label for="price">Price*</label><br>
+                    <input id="price" placeholder="Location (Paris)" type="text" name="price" value="{{preserved.price}}" >
+                </div>
+            </div>
+            <div class="amenities harmonyInput">
+                <div>
+                    <input type="checkbox" id="pool" name="amenities" value="Swimming Pool">
+                    <label for="pool"> Swimming Pool</label><br>
+                    <input type="checkbox" id="wifi" name="amenities" value="Wifi">
+                    <label for="wifi"> Wifi</label><br>
+                    <input type="checkbox" id="ac" name="amenities" value="Air Conditioning">
+                    <label for="ac"> Air Conditioning</label><br>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="parking" name="amenities" value="Free Parking">
+                    <label for="parking"> Free Parking</label><br>
+                    <input type="checkbox" id="tv" name="amenities" value="TV">
+                    <label for="tv"> TV</label><br>
+                    <input type="checkbox" id="heater" name="amenities" value="Heater">
+                    <label for="heater"> Heater</label><br>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="pets" name="amenities" value="Pet Friendly">
+                    <label for="pets"> Pet Friendly</label><br>
+                </div>
+            </div>
+            <div class="harmonyInput">
+                <label for="name">Images*</label><br>
+                <input id="file" placeholder="Image" type="file" name="image" accept="image/x-png,image/gif,image/jpeg" multiple="multiple">
+                <div class="orDivider">Or<hr></div>
+                <input id="url" placeholder="Image URL" type="text" name="imageURL" value="{{preserved.imageURL}}">
+            </div>
+            <input type="submit">
+            <p id="error">{{error}}</p>
+            <p id="status">{{status}}</p>
+        </form>
+    </div>
+</div>
