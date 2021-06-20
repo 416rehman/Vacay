@@ -193,4 +193,10 @@
     div > #content {
         min-height: 500px;
     }
+
+    #postInfo { display: flex; }
+    #listing{padding: 0}
+    .images {
+        flex-wrap: wrap;
+    }
 }
