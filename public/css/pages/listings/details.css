@@ -173,6 +173,7 @@
 }
 .images{
     display: flex;
+    flex-wrap: wrap;
 }
 .images > .image {
     height: 150px;
@@ -198,7 +199,7 @@
         min-height: 500px;
     }
     #listing{padding: 0}
-    .images {
-        flex-wrap: wrap;
+    .gallery, .info {
+        width: 100vw;
     }
 }
