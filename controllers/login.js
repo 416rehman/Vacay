@@ -33,24 +33,23 @@ module.exports = function(passport) {
     router.post('/',
         auth.LoggedOutOnly,
         fileUpload(),
-        form.preserveData,
         form.checkEmptyFields(['email', 'password']),
         form.validateEmail(['email']),
         form.validateMaxLength(['email', 'password'], [320, 128]),
         form.validateMinLength(['email', 'password'], [6, 4]),
         function(req, res, next) {
 
-            if (req.emptyFields?.length) return res.render('pages/user/login', {error: `Please fill the following fields: ${req.emptyFields}`,preserved: req.preservedData})
-            if (req.rejectedEmailFields?.length) return res.render('pages/user/login', {error: `Please enter a valid email`, preserved: req.preservedData});
-            if (req.overflowFields?.length) return res.render('pages/user/login', {error: `Max limit for ${req.overflowFields[0].key} is ${req.overflowFields[0].maxLength}.`, preserved: req.preservedData});
-            if (req.insufficientLengthFields?.length) return res.render('pages/user/login', {error: `Min limit for ${req.insufficientLengthFields[0].key} is ${req.insufficientLengthFields[0].minLength}.`, preserved: req.preservedData});
+            if (req.emptyFields?.length) return res.render('pages/user/login', {error: `Please fill the following fields: ${req.emptyFields}`,preserved: req.body})
+            if (req.rejectedEmailFields?.length) return res.render('pages/user/login', {error: `Please enter a valid email`, preserved: req.body});
+            if (req.overflowFields?.length) return res.render('pages/user/login', {error: `Max limit for ${req.overflowFields[0].key} is ${req.overflowFields[0].maxLength}.`, preserved: req.body});
+            if (req.insufficientLengthFields?.length) return res.render('pages/user/login', {error: `Min limit for ${req.insufficientLengthFields[0].key} is ${req.insufficientLengthFields[0].minLength}.`, preserved: req.body});
 
             passport.authenticate('local', function(err, user, info) {
-                if (err) return res.render('pages/user/login', {error: info?.message || `Login Failed`, preserved: req.preservedData});
-                if (!user) return res.render('pages/user/login', {error: info?.message || `Login Failed`, preserved: req.preservedData});
+                if (err) return res.render('pages/user/login', {error: info?.message || `Login Failed`, preserved: req.body});
+                if (!user) return res.render('pages/user/login', {error: info?.message || `Login Failed`, preserved: req.body});
 
                 req.logIn(user, function(err) {
-                    if (err) return res.render('pages/user/login', {error: info?.message || `Login Failed`, preserved: req.preservedData});
+                    if (err) return res.render('pages/user/login', {error: info?.message || `Login Failed`, preserved: req.body});
                     return res.redirect('/@' + user.username);
                 });
             })(req, res, next);
@@ -62,8 +61,8 @@ module.exports = function(passport) {
     // User.findOne({email: req.body.email}, (e, user) => {
     //     if (user === null)
     //
-    //     if (user.validPassword(req.body.password)) return res.render('pages/user/login', {status: `Login successful`, preserved: req.preservedData})
-    //     else res.render('pages/user/login', {error: `Wrong Email or Password`, preserved: req.preservedData})
+    //     if (user.validPassword(req.body.password)) return res.render('pages/user/login', {status: `Login successful`, preserved: req.body})
+    //     else res.render('pages/user/login', {error: `Wrong Email or Password`, preserved: req.body})
     // })
 }
 

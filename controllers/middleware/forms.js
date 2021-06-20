@@ -8,6 +8,7 @@
  *      Creation Date: 2021-06-11
  */
 const isImageURL = require('is-image-url')
+const randomstring = require("randomstring");
 
 /**
  * Checks if any fields in the fieldArray are not filled.
@@ -74,11 +75,23 @@ const checkEmptyFields = function (fieldArray){
 const limitFileTypes = function (targetMimes){
     return function (req, res, next) {
         req.rejectedFiles = []
+        const files = []
         if (req?.files) {
-            for (const file of Object.entries(req.files))
-                if (!(targetMimes.includes(file[1].mimetype))){
-                    req.rejectedFiles.push({name: file[1].name, mimetype: file[1].mimetype})
-                }
+            Object.entries(req.files).forEach(obj=>{
+                obj.forEach(upload=>{
+                    if (upload.constructor === Array){
+                        upload.forEach(file=>{
+                            //Multiple files per field
+                            if (!(targetMimes.includes(file.mimetype))){
+                                req.rejectedFiles.push({name: file.name, mimetype: file.mimetype})
+                            }
+                        })
+                    }
+                    else if (upload.mimetype && !targetMimes.includes(upload.mimetype)) {
+                        req.rejectedFiles.push({name: upload.name, mimetype: upload.mimetype})
+                    }
+                })
+            })
         }
         next();
     }
@@ -90,14 +103,32 @@ const limitFileTypes = function (targetMimes){
  *
  */
 const populateExtensions = function (req,res,next){
+    // if (req?.files) {
+    //     for (let file of Object.entries(req.files)) {
+    //         if (file[1].mimetype){
+
+    //         }
+    //     }
+    // }
     if (req?.files) {
-        for (let file of Object.entries(req.files)) {
-            if (file[1].mimetype){
-                const imageType = file[1].mimetype.split('/')
-                file[1].extension = imageType[imageType.length - 1]
-            }
-        }
+        Object.entries(req.files).forEach(obj=>{
+            obj.forEach(upload=>{
+                if (upload.constructor === Array){
+                    upload.forEach(file=>{
+                        //Multiple files per field
+                        const imageType = file.mimetype.split('/')
+                        file.extension = imageType[imageType.length - 1]
+                    })
+                }
+                else if (upload.mimetype) {
+                    //Multiple files per field
+                    const imageType = upload.mimetype.split('/')
+                    upload.extension = imageType[imageType.length - 1]
+                }
+            })
+        })
     }
+
     next();
 }
 
@@ -132,18 +163,6 @@ const validateImageURLs = function (fieldArray, splitter){
         next();
     }
 }
-
-/**
- * Preserves filled form fields data in req.preservedData
- */
-const preserveData = function (req,res,next) {
-    req.preservedData = {}
-    for (const [key,value] of Object.entries(req.body))
-        if (value.length) req.preservedData[key]= value;
-
-    next()
-}
-
 
 /**
  * Validates the provided fields if they are numbers.
@@ -243,15 +262,46 @@ const validateMinLength = function (fieldArray, limitsArray) {
     }
 }
 
+/**
+ * MUST USE PopulateExtension middleware before this.
+ *
+ *
+ * Generates a unique filename for uploaded files
+ * Creates a S3url property in the file object with provided bucketname
+ *
+ * @param BucketName
+ * @returns {function(*=, *, *): void}
+ */
+const generateS3URLsForUploads = function (BucketName) {
+    return function (req,res,next) {
+        if (req.files)
+            Object.entries(req.files).forEach(obj=>{
+                for (let upload of obj) {
+                    if (upload.constructor === Array){
+                        for (let file of upload) {
+                            file.filename = `${req.session.passport.user}_${randomstring.generate({length: 8, capitalization: 'lowercase'})}.${file.extension}`
+                            file.S3url= (`https://${BucketName}.s3.amazonaws.com/${file.filename}`)
+                        }
+                    }
+                    else if (upload.mimetype) {
+                        upload.filename = `${req.session.passport.user}_${randomstring.generate({length: 8, capitalization: 'lowercase'})}.${upload.extension}`
+                        upload.S3url= (`https://${BucketName}.s3.amazonaws.com/${upload.filename}`)
+                    }
+                }
+            })
+        next()
+    }
+}
+
 module.exports = {
     checkEmptyFields,
     limitFileTypes,
     populateExtensions,
     validateImageURLs,
-    preserveData,
     validateNumbers,
     validateNoSpecialCharacters,
     validateEmail,
     validateMaxLength,
-    validateMinLength
+    validateMinLength,
+    generateS3URLsForUploads
 }

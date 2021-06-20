@@ -7,7 +7,7 @@
         <div id="article-card-data">
             <p id="content">{{#if excerpt}}{{excerpt}}{{else}}{{content}}{{/if}}</p>
             <div class="metadata">
-                <a href="/@{{authorUsername}}">@{{authorUsername}}</a>
+                    {{#if authorUsername}}<a href="/@{{authorUsername}}">@{{authorUsername}}</a>{{/if}}
                 <p>{{date}}</p>
             </div>
         </div>

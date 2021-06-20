@@ -88,3 +88,7 @@
 .pagination > p {
     text-align: right;
 }
+
+#userPosts > .article-card {
+    margin-bottom: 5px;
+}

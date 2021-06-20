@@ -193,6 +193,10 @@ main {
     text-decoration: none;
 }
 
+.article-card {
+    min-width: 500px;
+}
+
 .hamburger {display: none;}
 @media screen and (max-width: 890px) {
     header>nav a:not(#logo) {display: none;}
@@ -221,6 +225,10 @@ main {
     /*DO NOT SHOW IN HAMBURGER MENNU*/
     header>nav.responsive > #logo,  nav.responsive > form, nav.responsive>.multiOption {
         display: none !important;
+    }
+
+    .article-card {
+        min-width: 100%;
     }
 }
 footer {

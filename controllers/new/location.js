@@ -11,7 +11,7 @@ const router = require('express').Router()
 const locationSchema = require('../../models/location.js')
 const fileUpload = require('express-fileupload')
 const form = require('../middleware/forms.js')
-
+const {uploadToS3} = require("../middleware/AWS_S3");
 
 
 //VIEW FOR NEW LOCATION
@@ -25,35 +25,27 @@ router.post('/',
     form.limitFileTypes(['image/png', 'image/jpeg']),
     form.populateExtensions,
     form.validateImageURLs(['imageURL']),
-    form.preserveData, async (req, res) => {
+    form.generateS3URLsForUploads(process.env.LOCATION_IMAGE_UPLOAD_BUCKET), async (req, res) => {
 
 
         //Validate Requirements
-        if (req.emptyFields.length) return res.render('pages/new/location', {error: `Please fill in the fields: ${req.emptyFields}`, preserved: req.preservedData});
-        if (req.rejectedFiles.length) return res.render('pages/new/location', {error: `Please choose an image file`, preserved: req.preservedData});
-        if (req.rejectedImageURLs.length) return res.render('pages/new/location', {error: `Please enter a valid URL`, preserved: req.preservedData})
-
-        //Evaluate Path for the file if its a link or uploaded
-        const staticAssetPath = req.files ? `/uploads/locations/${req.body.location}.${req.files.image.extension}` : req.body.imageURL
+        if (req.emptyFields.length) return res.render('pages/new/location', {error: `Please fill in the fields: ${req.emptyFields}`, preserved: req.body});
+        if (req.rejectedFiles.length) return res.render('pages/new/location', {error: `Please choose an image file`, preserved: req.body});
+        if (req.rejectedImageURLs.length) return res.render('pages/new/location', {error: `Please enter a valid URL`, preserved: req.body})
 
         //Prepare Schema
         const location = new locationSchema({
             location: req.body.location,
             country: req.body.country,
-            image: staticAssetPath
+            image: req.files?.image?.data ? req.files.image.S3url : req.body?.imageURL
         })
-
-        //If uploaded, save it on storage
-        if (req.files)
-            await req.files.image.mv(`E:\\Seneca\\WEB\\assignment\\1\\public\\uploads\\locations\\${req.body.location}.${req.files.image.extension}`, function (err) {
-                if (err) {return res.render('pages/new/location', {error: err, preserved: req.preservedData});}
-            })
 
         //Persist
         location.save().then(()=>{
+            if (req.files?.image) uploadToS3(req.files.image, req.files.image.filename, process.env.LOCATION_IMAGE_UPLOAD_BUCKET)
             return res.render('pages/new/location', {status: `${location.location} ${location.country} Saved Successfully.`});
         }).catch((e)=>{
-            return res.render('pages/new/location', {error: `${location.location} already exists.`, preserved: req.preservedData});
+            return res.render('pages/new/location', {error: `${location.location} already exists.`, preserved: req.body});
         })
 
         //Cache

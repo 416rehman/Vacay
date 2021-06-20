@@ -31,8 +31,6 @@ router.get('/',auth.LoggedOutOnly, function(req, res) {
 
 router.post('/',
     auth.LoggedOutOnly,
-    fileUpload(),
-    form.preserveData,
     form.checkEmptyFields(['username', 'name', 'email', 'password']),
     form.validateNoSpecialCharacters(['username']),
     form.validateEmail(['email']),
@@ -40,10 +38,10 @@ router.post('/',
     form.validateMinLength(['username', 'name', 'email', 'password'], [4, 2, 6, 8]), async (req, res) => {
 
         if(req.emptyFields.length) return res.render('pages/user/signup', {error: `Please fill the following fields: ${req.emptyFields}`})
-        if(req.rejectedSpecialCharFields.length) return res.render('pages/user/signup', {error: `Usernames can only contain the following special characters: - _ .`, preserved:req.preservedData})
-        if(req.rejectedEmailFields.length) return res.render('pages/user/signup', {error: `Please enter a valid email`, preserved:req.preservedData})
-        if (req.overflowFields?.length) return res.render('pages/user/signup', {error: `Max limit for ${req.overflowFields[0].key} is ${req.overflowFields[0].maxLength}.`, preserved: req.preservedData});
-        if (req.insufficientLengthFields?.length) return res.render('pages/user/signup', {error: `Min limit for ${req.insufficientLengthFields[0].key} is ${req.insufficientLengthFields[0].minLength}.`, preserved: req.preservedData});
+        if(req.rejectedSpecialCharFields.length) return res.render('pages/user/signup', {error: `Usernames can only contain the following special characters: - _ .`, preserved:req.body})
+        if(req.rejectedEmailFields.length) return res.render('pages/user/signup', {error: `Please enter a valid email`, preserved:req.body})
+        if (req.overflowFields?.length) return res.render('pages/user/signup', {error: `Max limit for ${req.overflowFields[0].key} is ${req.overflowFields[0].maxLength}.`, preserved: req.body});
+        if (req.insufficientLengthFields?.length) return res.render('pages/user/signup', {error: `Min limit for ${req.insufficientLengthFields[0].key} is ${req.insufficientLengthFields[0].minLength}.`, preserved: req.body});
 
         const exists = await userSchema.exists({$or: [{email: req.body.email}, {username: req.body.username}]})
         if (exists) return res.render('pages/user/signup', {error: `A user with the provided info already exists`});
