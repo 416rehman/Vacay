@@ -49,6 +49,7 @@ const LoggedInOnly = function (req, res, next) {
  * @constructor
  */
 const DynamicLayout = function (req, res, next) {
+    console.log(req.body)
     if (req.isAuthenticated()) res.locals.loggedIn = req.session.passport.user;
 
     next()

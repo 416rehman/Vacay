@@ -9,11 +9,9 @@
  */
 const userSchema = require('../models/user.js')
 const router = require('express').Router()
+
 router.post('/', (req,res)=>{
-    userSchema.fuzzySearch(req.body.query).then(r => {
-            res.send(r)
-            console.log(r)
-        }).catch(e=>console.log(e))
+
 })
 
 module.exports = router

@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: true,}) .then(async ()=>{
+    useFindAndModify: false,}) .then(async ()=>{
         console.log(`Caching Types and Locations!`)
         app.locals.typesCache = await typeSchema.find().lean()
         app.locals.locationsCache = await locationSchema.find().lean()

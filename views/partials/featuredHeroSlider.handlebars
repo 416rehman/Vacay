@@ -8,6 +8,7 @@
         </div>
         <div class="carousel-inner">
             {{#each showcase}}
+                {{log this}}
                 <div class="carousel-item{{#if @first}} active{{/if}}">
                     <img src="{{#if images}}{{images.[0]}}{{else}}/assets/placeholder.png{{/if}}" class="d-block w-100" alt="...">
                     <div class="carousel-caption">

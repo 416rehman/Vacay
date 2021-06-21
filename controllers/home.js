@@ -17,7 +17,7 @@ router.get('/', async (req,res)=>{
     const propertyTypes = req.app.locals.typesCache
     const popularLocations = req.app.locals.locationsCache.slice(0, 6)
     const articles = await articleSchema.find().populate('author').limit(10).lean()
-    let featuredListings = await listingSchema.find().populate('location').limit(5).lean()
+    let featuredListings = await listingSchema.find().populate('location').populate('type').limit(5).lean()
     for (let listing of featuredListings){
         calculateRating(listing)
     }
@@ -48,8 +48,5 @@ router.get('/', async (req,res)=>{
         featuredListings
         })
 })
-
-
-
 
 module.exports = router
