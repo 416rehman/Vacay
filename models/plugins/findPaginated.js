@@ -24,6 +24,7 @@ module.exports = function exists(schema, options) {
         return new Promise((async (resolve, reject) => {
             const count = await this.countDocuments(filter)
             await this.find(filter).limit(perPage).skip(perPage * (page <= 1 ? 0 : page - 1)).sort(sort).populate(populate).populate(populate2).populate(populate3).lean().exec(function (error, results) {
+                if (error) reject(error)
                 try {
                     results.forEach(a => {
                         if (a.date) a.date = a.date.toLocaleString()

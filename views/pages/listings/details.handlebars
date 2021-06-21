@@ -6,6 +6,11 @@
             <span>{{this.type.name}}</span>
             <h1>{{this.title}}</h1>
             <div id="address"><span>{{this.address}} {{this.location.location}}, {{this.location.country}}</span></div>
+            <div id="rooms">
+                <div title="Bedrooms"><i class="fas fa-bed"></i> {{this.bedrooms}}</div>
+                <div title="Bathrooms"><i class="fas fa-bath"></i> {{this.bathrooms}}</div>
+            </div>
+            <br>
             <div id="rating">
                 <span>Rating: {{this.average}}/5</span>
                 <div class="rate">

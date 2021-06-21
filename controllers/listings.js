@@ -25,17 +25,29 @@ router.get('/:listingID', async (req,res)=>{
 
 router.get('/', async (req,res)=>{
     const filters = {}
+    console.log(req.query)
     if(req.query.type) filters.type = req.query.type
     if (req.query.location) filters.location = req.query.location
     if (req.query.author) filters.author = req.query.author
+    if (req.query.amenities) filters.amenities = {$in: [].concat(req.query.amenities)}
+
+    if (!isNaN(parseInt(req.query.min_price)) || !isNaN(parseInt(req.query.max_price))) filters.price = {}
+    if (!isNaN(parseInt(req.query.min_price))) filters.price['$gt'] = req.query.min_price
+    if (!isNaN(parseInt(req.query.max_price))) filters.price['$lt'] = req.query.max_price
+
+    if (!isNaN(parseInt(req.query.beds))) filters.bedrooms = req.query.beds
+    if (!isNaN(parseInt(req.query.bathrooms))) filters.bathrooms = req.query.bathrooms
+
+    console.log(filters)
 
     const perPage = 10, page = Math.max(1, req.query.page) || 1
     try {
-        const listings = await listingModel.findPaginated(perPage, page,filters,'-date','author','location', 'type');
+        const listings = await listingModel.findPaginated(perPage, page,filters,'-date','author','location', 'type')
         for (let listing of listings.results){
             calculateRating(listing)
         }
-        return res.render('pages/listings/listings', listings)
+        return res.render('pages/listings/listings', {listings, locations: [''].concat(req.app.locals.locationsCache), types: [''].concat(req.app.locals.typesCache)})
+
     }
     catch (e) {
         res.render('pages/404', {error: e.message})

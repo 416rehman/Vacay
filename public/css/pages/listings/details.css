@@ -193,6 +193,10 @@
     filter: brightness(100%);
     cursor: pointer;
 }
+#rooms {display: flex}
+#rooms > div {
+    margin-right: 10px;
+}
 
 @media screen and (max-width: 890px) {
     div > #content {

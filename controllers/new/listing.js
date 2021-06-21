@@ -64,8 +64,6 @@ router.post('/',
             address: req.body.address,
             price: req.body.price,
             amenities: req.body.amenities,
-            bedrooms: req.body.bedrooms,
-            bathrooms: req.body.bathrooms,
             images: images,
             author: req.session.passport.user
         })
