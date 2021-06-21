@@ -11,11 +11,7 @@ Using Express, Handlebars for backend/frontend, Mongo/Mongoose for DB, and Passp
 3. Rename the `sample.env` file to `.env`
 4. Fill the .env file with your mongo URI, and other fields.
 5. Run `nodemon` in the directory
-6. Visit http://localhost:3000/ to see the web app
-
-```bash
-pip install foobar
-```
+6. Visit http://localhost:3000/ 
 
 ## Directory Structure
 
