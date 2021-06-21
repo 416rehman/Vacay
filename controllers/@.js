@@ -11,9 +11,6 @@ const express = require('express');
 const router = express.Router();
 const userModel = require('../models/user.js')
 const {calculateRating} = require('../models/plugins/calculateAverageRating.js')
-const auth = require('./middleware/authentication')
-const form = require('./middleware/forms')
-const {uploadToS3} = require("./middleware/AWS_S3");
 
 //Profile
 router.get('/@:username?',async function(req,res){
@@ -36,41 +33,4 @@ router.get('/@:username?',async function(req,res){
         return res.render('pages/404')
     }
 })
-
-// BASIC LIMITS
-
-// Field          MIN     MAX
-// 'username'     4       15
-// 'name'         2       64
-// 'bio'                  256
-
-router.post('/@',auth.LoggedInOnly,
-    form.validateMinLength(['name'],[2]),
-    form.validateMaxLength(['name', 'bio'],[64, 256]),
-    form.populateExtensions,
-    form.generateS3URLsForUploads(process.env.USER_AVATAR_UPLOAD_BUCKET,),
-    form.limitFileTypes(['image/jpeg', 'image/png', 'image/jpg'])
-    , async function (req,res){
-    console.log(req.body)
-    if (req.insufficientLengthFields.length) return res.render('pages/404', {error: `Name must be longer than 2 chars`})
-    if (req.overflowFields.length) return res.render('pages/404', {error: `Max lengths - Name: 64 chars, Bio: 256 chars`})
-    if (req.rejectedFiles.length) return res.render('pages/404', {error: `Please choose an image file`})
-
-        try {
-            console.log(req.session.passport.user)
-            await userModel.findByIdAndUpdate(req.session.passport.user, {
-                name: req.body.name,
-                bio: req.body.bio,
-                avatar: req.files?.avatar?.S3url
-            })
-            console.log(req.files)
-            if (req.files?.avatar) uploadToS3(req.files.avatar, req.files.avatar.filename, process.env.USER_AVATAR_UPLOAD_BUCKET)
-            return res.redirect('/@')
-        }
-    catch (e) {
-        console.log(e)
-        return res.render('pages/404', {error: e})
-    }
-})
-
 module.exports = router

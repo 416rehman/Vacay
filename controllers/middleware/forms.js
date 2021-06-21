@@ -68,11 +68,12 @@ const checkEmptyFields = function (fieldArray){
  * Checks if any files in req.files do not have the same mimetype as in targetMimes array.
  * Invalid files are stored in req.rejectedFiles
  *
+ * if no mimetypes are specified, defaults to ['image/jpeg', 'image/png', 'image/jpg']
  * if required flag is passed, req.rejectedFiles will NOT be empty if no files were uploaded.
  *
  * @param {Array}targetMimes
  */
-const limitFileTypes = function (targetMimes){
+const limitFileTypes = function (targetMimes = ['image/jpeg', 'image/png', 'image/jpg']){
     return function (req, res, next) {
         req.rejectedFiles = []
         const files = []

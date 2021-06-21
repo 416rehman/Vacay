@@ -31,10 +31,10 @@
  * @constructor
  */
 const LoggedInOnly = function (req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req?.isAuthenticated()) {
         return next()
     }
-    return res.redirect('/login')
+    return res?.redirect('/login')
 }
 
 /**
@@ -49,7 +49,6 @@ const LoggedInOnly = function (req, res, next) {
  * @constructor
  */
 const DynamicLayout = function (req, res, next) {
-    console.log(req.body)
     if (req.isAuthenticated()) res.locals.loggedIn = req.session.passport.user;
 
     next()

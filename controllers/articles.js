@@ -16,6 +16,8 @@ router.get('/:articleID', async (req,res)=>{
     try{
         const article = await articlesSchema.findOne({_id: req.params.articleID}).populate('author').lean()
         article.date = article.date.toLocaleString()
+
+        if (req.isAuthenticated() && article.author._id == req.session?.passport?.user) article.editable = true
         res.render('pages/articles/article', article)
     } catch (e) {
         res.render('pages/404', {error: e})

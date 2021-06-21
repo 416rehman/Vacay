@@ -32,7 +32,7 @@ router.post('/',
             locations: req.app.locals.locationsCache,
             types: req.app.locals.typesCache
         }
-        console.log(req.files.image.length)
+
         //Validate Requirements
         if (req.emptyFields.length) return res.render('pages/new/listing', {error: `Please fill in the fields: ${req.emptyFields}`, ...options});
         if (req.rejectedFiles.length) return res.render('pages/new/listing', {error: `Please choose an image file`, ...options});
@@ -53,7 +53,6 @@ router.post('/',
                 images.push(img)
             })
         }
-        console.log(images)
 
         let newListing = new listingSchema({
             bedrooms: req.body.bedrooms,

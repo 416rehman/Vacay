@@ -7,24 +7,10 @@
         <div id="userCard">
             <div class="avatar" style="background-image: url('{{#if user.avatar}}{{user.avatar}}{{else}}/assets/placeholder.png{{/if}}')"></div>
             <div id="userInfo">
-                {{#if loggedIn}}<button id="edit" title="Edit profile"><i class="far fa-edit"></i></button>{{/if}}
                 <h1 id="name">{{user.name}}</h1>
                 <span id="username">@{{user.username}}</span>
                 <hr>
                 <p id="bio">{{user.bio}}</p>
-                {{#if loggedIn}}
-                    <form action="/@" method="post" id="editedData" enctype="multipart/form-data">
-                        <label for="avatar" id="avatarLbl">
-                            Change
-                        </label>
-                        <input type="file" id="avatar" name="avatar">
-                        <input type="text" id="name" name="name" value="">
-                        <input type="text" id="bio" name="bio" value="">
-                        <button type="submit" id="submit" title="Save Edits"><i class="fas fa-check"></i></button>
-                    </form>
-                    <p>{{error}}</p>
-                    <p>{{status}}</p>
-                {{/if}}
             </div>
         </div>
         <hr>
