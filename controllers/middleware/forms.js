@@ -241,7 +241,7 @@ const validateMaxLength = function (fieldArray, limitsArray) {
             for (const [key, value] of Object.entries(req.body))
                 if (fieldArray.includes(key))
                     if (value.length > limitsArray[fieldArray.indexOf(key)])
-                        req.overflowFields.push({key, maxLength: limitsArray[fieldArray.indexOf(key)]});
+                        req.overflowFields.push({field: key, maxLength: limitsArray[fieldArray.indexOf(key)]});
         next()
     }
 }
@@ -258,7 +258,7 @@ const validateMinLength = function (fieldArray, limitsArray) {
             for (const [key, value] of Object.entries(req.body))
                 if (fieldArray.includes(key))
                     if (value.length < limitsArray[fieldArray.indexOf(key)])
-                        req.insufficientLengthFields.push({key, minLength: limitsArray[fieldArray.indexOf(key)]});
+                        req.insufficientLengthFields.push({field: key, minLength: limitsArray[fieldArray.indexOf(key)]});
         next()
     }
 }

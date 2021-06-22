@@ -25,6 +25,8 @@ router.post('/',
     form.validateImageURLs(['imageURL'], ','),
     form.validateNumbers(['price', 'bedrooms', 'bathrooms']),
     form.limitFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
+    form.validateMinLength(['title', 'details', 'address'],[5, 10, 64]),
+    form.validateMaxLength(['title', 'details', 'address'],[64, 2048, 64]),
     form.populateExtensions, form.generateS3URLsForUploads(process.env.LISTING_IMAGE_UPLOAD_BUCKET), async (req,res)=>{
 
         const options = {
@@ -37,8 +39,10 @@ router.post('/',
         if (req.emptyFields.length) return res.render('pages/new/listing', {error: `Please fill in the fields: ${req.emptyFields}`, ...options});
         if (req.rejectedFiles.length) return res.render('pages/new/listing', {error: `Please choose an image file`, ...options});
         if (req.rejectedImageURLs.length) return res.render('pages/new/listing', {error: `Please enter a valid Image URL`, ...options})
-        if (req.rejectedNumbers.length) return res.render('pages/new/listing', {error: `Please provide a valid number: ${req.rejectedNumbers}`, ...options})
+        if (req.rejectedNumbers.length) return res.render('pages/new/listing', {error: `Please provide a valid number: ${req.rejectedNumbers.flat}`, ...options})
         if (req.extractedImageURLs > 5 || req.files?.image?.length > 5)  return res.render('pages/new/listing', {error: `You can upload 5 images max ${req.rejectedNumbers}`, ...options})
+        if (req.overflowFields.length) return res.render('pages/new/listing', {error: `Max Char Limit reached.  ${req.overflowFields.map(f=> " " + f.field + " : " + f.maxLength)}`,...options})
+        if (req.insufficientLengthFields.length) return res.render('pages/new/listing', {error: `Fields under minimum length. ${req.insufficientLengthFields.map(f=> " " + f.field + " : " + f.minLength)}`,...options})
 
         let images = []
         //Uploads

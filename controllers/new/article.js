@@ -23,12 +23,16 @@ router.post('/',
     form.checkEmptyFields(["title", "content"]),
     form.limitFileTypes(['image/png', 'image/jpeg']),
     form.validateImageURLs(['imageURL']),
+    form.validateMinLength(['title', 'content'],[5, 10]),
+    form.validateMaxLength(['title', 'content'],[64, 5120]),
     form.populateExtensions,
     form.generateS3URLsForUploads(process.env.ARTICLE_IMAGE_UPLOAD_BUCKET), async (req, res) => {
 
     if (req.emptyFields.length) return res.render('pages/new/article', {error: `Please fill in the fields: ${req.emptyFields}`, preserved: req.body});
     if (req.rejectedFiles.length) return res.render('pages/new/article', {error: `Please choose an image file`, preserved: req.body});
     if (req.rejectedImageURLs.length) return res.render('pages/new/article', {error: `Please enter a valid image URL`, preserved: req.body})
+    if (req.overflowFields.length) return res.render('pages/new/article', {error: `Max Char Limit reached. ${req.overflowFields}`, preserved: req.body})
+    if (req.insufficientLengthFields.length) return res.render('pages/new/article', {error: `Fields under minimum length. ${req.insufficientLengthFields}`, preserved: req.body})
 
         let newArticle = new articleSchema({
         author: req.session.passport.user,

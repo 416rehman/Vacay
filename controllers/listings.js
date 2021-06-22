@@ -10,12 +10,11 @@
 const listingModel = require('../models/listing.js')
 const express = require('express');
 const router = express.Router();
-const {calculateRating} = require('../models/plugins/calculateAverageRating.js')
+
 router.get('/:listingID', async (req,res)=>{
     try {
         let listing = await listingModel.findOne({_id: `${req.params.listingID}`}).populate('author').populate('location').populate('type').lean()
-        calculateRating(listing)
-        listing.date = listing.date.toLocaleString()
+        // listing.date = listing.date.toLocaleString()
         res.render('pages/listings/details', listing)
     }
     catch (e){
@@ -43,11 +42,8 @@ router.get('/', async (req,res)=>{
     const perPage = 10, page = Math.max(1, req.query.page) || 1
     try {
         const listings = await listingModel.findPaginated(perPage, page,filters,'-date','author','location', 'type')
-        for (let listing of listings.results){
-            calculateRating(listing)
-        }
-        return res.render('pages/listings/listings', {listings, locations: [''].concat(req.app.locals.locationsCache), types: [''].concat(req.app.locals.typesCache)})
 
+        return res.render('pages/listings/listings', {listings, locations: [''].concat(req.app.locals.locationsCache), types: [''].concat(req.app.locals.typesCache)})
     }
     catch (e) {
         res.render('pages/404', {error: e.message})

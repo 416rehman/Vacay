@@ -5,7 +5,7 @@
     <div class="article">
         {{#if author}}
             Posted By <div class="user" onclick="location.href='/@{{author.username}}';">
-            <div class="userAvatar" style="background: url('{{#if avatar}}{{avatar}}{{else}}/assets/placeholder.png{{/if}}')"></div>
+            <div class="userAvatar" style="background: url('{{#if author.avatar}}{{author.avatar}}{{else}}/assets/placeholder.png{{/if}}')"></div>
             <div id="author"><span id="authorname">{{author.name}}</span> <span id="username">@{{author.username}}</span></div>
         </div>
         {{/if}}

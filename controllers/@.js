@@ -10,7 +10,6 @@
 const express = require('express');
 const router = express.Router();
 const userModel = require('../models/user.js')
-const {calculateRating} = require('../models/plugins/calculateAverageRating.js')
 
 //Profile
 router.get('/@:username?',async function(req,res){
@@ -22,11 +21,7 @@ router.get('/@:username?',async function(req,res){
         //If specified posts type is articles, fetch articles, else fetch listings by default
         const perPage = 10, page = Math.max(1, req.query.page) || 1
         if (req.query.posts == 'articles') response.articles = await require('../models/article.js').findPaginated(perPage,page,{author: response.user._id}, '-date')
-        else {
-            response.listings = await require('../models/listing.js').findPaginated(perPage,page,{author: response.user._id}, '-date', 'type', 'location')
-            for (let obj of response.listings.results)
-                obj.rating = calculateRating(obj)
-        }
+        else response.listings = await require('../models/listing.js').findPaginated(perPage,page,{author: response.user._id}, '-date', 'type', 'location')
 
         return res.render('pages/user/profile', response)
     } catch (e) {

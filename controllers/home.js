@@ -11,20 +11,13 @@
 const router = require('express').Router();
 const listingSchema = require('../models/listing.js')
 const articleSchema = require('../models/article.js')
-const {calculateRating} = require('../models/plugins/calculateAverageRating.js')
 
 router.get('/', async (req,res)=>{
     const propertyTypes = req.app.locals.typesCache
     const popularLocations = req.app.locals.locationsCache.slice(0, 6)
     const articles = await articleSchema.find().populate('author').limit(10).lean()
-    let featuredListings = await listingSchema.find().populate('location').populate('type').limit(5).lean()
-    for (let listing of featuredListings){
-        calculateRating(listing)
-    }
-
-    articles.forEach(a =>{
-        a.date = a.date.toLocaleString()
-    })
+    let featuredListings = await listingSchema.find().populate('location').populate('type').sort({average: -1}).limit(5).lean()
+    articles.forEach(a => a.date = a.date.toLocaleString())
 
     for (let t of propertyTypes) {
         const count = await listingSchema.size({type: t._id})
@@ -36,7 +29,7 @@ router.get('/', async (req,res)=>{
         const count = await listingSchema.size({location: l._id})
         if(count) l.subtitle = `${count} Properties`
         const cheapest = await listingSchema.findCheapest({location: l._id})
-        if (cheapest) l.tags = [{label: 'From', content: `${cheapest.price}`}]
+        if (cheapest) l.tags = [{label: 'From', content: `$${cheapest.price}`}]
     }
 
     res.render('pages/home', {

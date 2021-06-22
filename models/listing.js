@@ -48,6 +48,14 @@ const listingSchema = new mongoose.Schema({
         _4stars: {type: Number, default: 1},
         _5stars: {type: Number, default: 1},
     },
+    average: {
+        type: Number,
+        default: function() {
+            const sum = this.ratings._1stars + this.ratings._2stars + this.ratings._3stars + this.ratings._4stars + this.ratings._5stars
+            const averageSum = (this.ratings._1stars * 1) + (this.ratings._2stars * 2) + (this.ratings._3stars * 3) + (this.ratings._4stars * 4) + (this.ratings._5stars * 5)
+            return (averageSum/sum).toFixed(1) || 1;
+        }
+    },
     images: [{type: String}],
     thumbnail: {
         type: String
