@@ -25,7 +25,7 @@ router.post('/',
     form.validateImageURLs(['imageURL'], ','),
     form.validateNumbers(['price', 'bedrooms', 'bathrooms']),
     form.limitFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
-    form.validateMinLength(['title', 'details', 'address'],[5, 10, 64]),
+    form.validateMinLength(['title', 'details', 'address'],[5, 10, 5]),
     form.validateMaxLength(['title', 'details', 'address'],[64, 2048, 64]),
     form.populateExtensions, form.generateS3URLsForUploads(process.env.LISTING_IMAGE_UPLOAD_BUCKET), async (req,res)=>{
 

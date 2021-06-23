@@ -28,16 +28,12 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    excerpt: {
-        type: String
-    },
+    excerpt: String,
     date: {
         type: Date,
         default: Date.now
     },
-    image: {
-        type: String
-    }
+    image: String
 })
 
 articleSchema.plugin(mongoose_fuzzy_searching, { fields: ['content', 'excerpt', 'title'] });

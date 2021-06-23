@@ -16,7 +16,12 @@ router.get('/', async (req,res)=>{
     const propertyTypes = req.app.locals.typesCache
     const popularLocations = req.app.locals.locationsCache.slice(0, 6)
     const articles = await articleSchema.find().populate('author').limit(10).lean()
-    let featuredListings = await listingSchema.find().populate('location').populate('type').sort({average: -1}).limit(5).lean()
+    let featuredListings = await listingSchema.find()
+                            .populate('location')
+                            .populate('type')
+                            .sort({average: -1})
+                            .limit(5).lean()
+
     articles.forEach(a => a.date = a.date.toLocaleString())
 
     for (let t of propertyTypes) {
