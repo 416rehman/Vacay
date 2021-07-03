@@ -4,6 +4,13 @@ A mock bnb/travel web application for WEB322 Seneca.
 
 Using Express, Handlebars for backend/frontend, Mongo/Mongoose for DB, and Passport for authentication.
 
+## TODO
+
+1. Highlight invalid form fields
+2. Finish Search
+3. Add account activation system (New accounts should be validated via email)
+4. Add Password Reset system
+
 ## Installation
 
 1. Clone the repo
