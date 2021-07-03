@@ -13,6 +13,13 @@ Using Express, Handlebars for backend/frontend, Mongo/Mongoose for DB, and Passp
 
 ## Installation
 
+1. Highlight invalid form fields
+2. Finish Search
+3. Add account activation system (New accounts should be validated via email)
+4. Add Password Reset system
+
+## Installation
+
 1. Clone the repo
 2. Run `npm i` in the directory
 3. Rename the `sample.env` file to `.env`
