@@ -8,15 +8,14 @@ Using Express, Handlebars for backend/frontend, Mongo/Mongoose for DB, and Passp
 
 1. Highlight invalid form fields
 2. Finish Search
-3. Add account activation system (New accounts should be validated via email)
+3. Add activation system (New accounts should be validated via email)
 4. Add Password Reset system
 
 ## Installation
 
 1. Highlight invalid form fields
 2. Finish Search
-3. Add account activation system (New accounts should be validated via email)
-4. Add Password Reset system
+3. Add account activation and Password Reset system (New accounts should be validated via email)
 
 ## Installation
 
@@ -71,6 +70,3 @@ public/uploads contains user uploaded content.
 **models** - Contains mongoose models and any custom mongoose plugins
 
 **controllers** - Express/Server-side routes, controllers, and custom middleware.
-
-# Disclaimer
-*The assets used are not mine so make sure you change the assets to something you have permission to use.*
