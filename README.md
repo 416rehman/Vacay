@@ -1,6 +1,6 @@
 # VACAY
 
-[LIVE DEMO](http://web322.ahmadz.ai/)
+## [LIVE DEMO](http://web322.ahmadz.ai/)
 
 A mock bnb/travel web application for WEB322 Seneca.
 
