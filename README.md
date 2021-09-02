@@ -5,11 +5,10 @@
 	<img src="https://img.shields.io/badge/Grade-A%2B-informational" alt="Grade - A">
 </div>
 
-## [LIVE DEMO](http://web322.ahmadz.ai/)
-
-A mock bnb/travel web application for WEB322 Seneca.
-
+A mock bnb/travel web application for WEB322 Seneca.<br>
 Using Express, Handlebars for backend/frontend, Mongo/Mongoose for DB, and Passport for authentication.
+
+**[LIVE DEMO](http://web322.ahmadz.ai/)**
 
 ## TODO
 
