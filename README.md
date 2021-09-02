@@ -5,8 +5,13 @@
 	<img src="https://img.shields.io/badge/Grade-A%2B-informational" alt="Grade - A">
 </div>
 
-A mock bnb/travel web application for WEB322 Seneca.<br>
-Using Express, Handlebars for backend/frontend, Mongo/Mongoose for DB, Passport for authentication, and AWS S3 storage for user uploads/content.
+An introductory full-stack, simple bnb-like web application for course WEB322 in Seneca.<br>
+
+**Backend:** `Express`<br>
+**Frontend:** `Server-rendered Handlebars`<br>
+**Database:** `MongoDB`<br>
+**Authentication:** `PassportJS`<br>
+**Static/Content:** `AWS S3`<br>
 
 **[LIVE DEMO](http://web322.ahmadz.ai/)**
 
