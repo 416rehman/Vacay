@@ -6,7 +6,7 @@
 </div>
 
 A mock bnb/travel web application for WEB322 Seneca.<br>
-Using Express, Handlebars for backend/frontend, Mongo/Mongoose for DB, and Passport for authentication.
+Using Express, Handlebars for backend/frontend, Mongo/Mongoose for DB, Passport for authentication, and AWS S3 storage for user uploads/content.
 
 **[LIVE DEMO](http://web322.ahmadz.ai/)**
 
