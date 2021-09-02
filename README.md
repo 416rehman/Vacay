@@ -4,6 +4,7 @@
 	<img src="https://img.shields.io/badge/Course-WEB322-2ea44f" alt="Course - WEB322">
 	<img src="https://img.shields.io/badge/Grade-A%2B-informational" alt="Grade - A">
 </div>
+
 ## [LIVE DEMO](http://web322.ahmadz.ai/)
 
 A mock bnb/travel web application for WEB322 Seneca.
